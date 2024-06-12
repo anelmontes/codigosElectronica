@@ -1,0 +1,30 @@
+// Crear variables globales (variables que se pueden usar en cualquier parte de nuestro código)
+// Aquí estamos creando una variable llamada &quot;sensorPin&quot; de tipo &quot;int&quot;
+// e inicializándolo para que tenga el valor &quot;0&quot;, que es el pin A0 de
+//entrada analógica al que se conecta el pot.
+int sensorPin = 0;
+// Variable para almacenar el número de pin al que está conectado el LED
+int ledPin = 13;
+// esta función se ejecuta una vez cuando se inicia el código
+void setup()
+{
+// establece ledPin (13) como una SALIDA
+pinMode(ledPin, OUTPUT);
+}
+// esta función se ejecuta repetidamente una vez que finaliza la configuración ()
+void loop()
+{
+// crea una variable local (variable que solo se puede usar dentro del bucle () para almacenar
+// un valor del sensor (potenciometro) llamado sensorValue
+int sensorValue;
+// usa la función analogRead () para leer sensorPin y almacenar el valor en sensorValue
+sensorValue = analogRead(sensorPin);
+// Enciende el LED
+digitalWrite(ledPin, HIGH);
+delay(sensorValue);
+// Apaga el LED
+digitalWrite(ledPin, LOW);
+// retraso (delay) para el valor de sensorValue
+delay(sensorValue);
+// vuelve al principio
+}
