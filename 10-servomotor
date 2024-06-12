@@ -1,0 +1,48 @@
+#include &lt;Servo.h&gt;
+//crear un servo objeto llamado servo1
+Servo servo1;
+
+void setup()
+{
+// conecta el servo1 al pin 9 en el Arduino
+servo1.attach(9);
+}
+
+void loop()
+{
+// crea una variable local para almacenar la posición del servo.
+int position;
+// Para controlar un servo, se indica el ángulo al que se desea posicionar
+// Los servos no pueden girar 360 grados completos
+// pero puedes indicarles que se mueva entre 0 y 180 grados.
+// Cambiar posición a toda velocidad:
+// Dile al servo que vaya a 90 grados
+servo1.write(90);
+// Pausa para tener tiempo de moverse
+delay(1000);
+// Dile al servo que vaya a 180 grados
+servo1.write(180);
+// Pausa para tener tiempo de moverse
+delay(1000);
+// Dile al servo que vaya a 0 grados
+servo1.write(0);
+// Pausa para tener tiempo de moverse
+delay(1000);
+
+// Dile al servo que vaya a 180 grados, avanzando dos grados
+for(position = 0; position &lt; 180; position += 2)
+{
+// Moverse a la siguiente posición
+servo1.write(position);
+// Pausa corta para permitir que se mueva
+delay(20);
+}
+// Dile al servo que vaya a 0 grados, avanzando un grado
+for(position = 180; position &gt;= 0; position -= 1)
+{
+// Moverse a la siguiente posición
+servo1.write(position);
+// Pausa corta para permitir que se mueva
+delay(20);
+}
+}
