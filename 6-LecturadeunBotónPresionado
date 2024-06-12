@@ -1,0 +1,71 @@
+//Primero configuraremos las constantes para los pines a los que conectaremos las terminales del RGB
+// Esto nos permitirá identificar cada color en el código de abajo.
+// Pin de botón (pushbutton)
+const int buttonPin = 3;
+// Pines del led RGB
+const int redPin = 11;
+const int greenPin = 10;
+const int bluePin = 9;
+
+// Crea una variable para almacenar un contador y ponerlo en 0
+int counter = 0;
+void setup()
+{
+// Configura los pines del pushbutton para que sean una Entrada:
+pinMode(buttonPin, INPUT);
+// Configura los pines del led RGB para que sea Salidas:
+pinMode(redPin, OUTPUT);
+pinMode(greenPin,OUTPUT);
+pinMode(bluePin,OUTPUT);
+}
+
+void loop()
+{
+// Varible local para guardar el estado del pushbutton
+int buttonState;
+// Lee el estado digital del buttonPin con la función digitalRead() y almacena
+// el valor en la variable buttonState
+buttonState = digitalRead(buttonPin);
+// Si el botón es presionado, incrementa el contador y espera un poco para
+// darle tiempo a que el botón se libere.
+if (buttonState == LOW) // Prende el LED
+{
+
+counter++;
+delay(150);
+}
+// Utiliza el ciclo IF para revisar el valor del contador .
+// Si el contador es igual a 0, todos los pines se apagarán
+if(counter == 0)
+{
+digitalWrite(redPin,LOW);
+digitalWrite(greenPin,LOW);
+digitalWrite(bluePin,LOW);
+}
+// si el contador es igual a 1, el redPin está en estado algo (encendido)
+else if(counter == 1)
+{
+digitalWrite(redPin,HIGH);
+digitalWrite(greenPin,LOW);
+digitalWrite(bluePin,LOW);
+}
+// si el contador es igual a 2, el greenPin está en estado algo (encendido)
+else if(counter ==2)
+{
+digitalWrite(redPin,LOW);
+digitalWrite(greenPin,HIGH);
+digitalWrite(bluePin,LOW);
+}
+// si el contador es igual a 3, el bluePin está en estado algo (encendido)
+else if(counter ==3)
+{
+digitalWrite(redPin,LOW);
+digitalWrite(greenPin,LOW);
+digitalWrite(bluePin,HIGH);
+}
+// de lo contario, reinicia el contador a 0 (lo cual apagará todos los pins)
+else
+{
+counter =0;
+}
+}
