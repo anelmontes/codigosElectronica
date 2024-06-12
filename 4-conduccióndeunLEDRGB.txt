@@ -1,0 +1,73 @@
+// crea variables para números de pin. Aquí los estamos haciendo constantes, porque nunca cambian.
+const int RED_PIN = 5;
+const int GREEN_PIN = 6;
+const int BLUE_PIN = 9;
+// Qué tan rápido planeamos recorrer los colores en milisegundos
+int DISPLAY_TIME = 10;
+
+void setup()
+{
+// establece las tres variables pin como salidas
+pinMode(RED_PIN, OUTPUT);
+pinMode(GREEN_PIN, OUTPUT);
+pinMode(BLUE_PIN, OUTPUT);
+}
+
+void loop()
+{
+// Hemos escrito una función personalizada llamada mainColors () que recorre los ocho colores.
+//Solo estamos &quot;llamando&quot; a la función aquí (diciéndole que se ejecute).
+mainColors();
+}
+// Aquí está la función personalizada mainColors () que hemos escrito.
+void mainColors()
+{
+// Apagado (todos los LED apagados):
+digitalWrite(RED_PIN, LOW);
+digitalWrite(GREEN_PIN, LOW);
+digitalWrite(BLUE_PIN, LOW);
+//por un segundo
+delay(1000);
+// Rojo (enciende solo el LED rojo):
+digitalWrite(RED_PIN, HIGH);
+digitalWrite(GREEN_PIN, LOW);
+digitalWrite(BLUE_PIN, LOW);
+
+//por un segundo
+delay(1000);
+// Verde (encienda solo el LED verde):
+digitalWrite(RED_PIN, LOW);
+digitalWrite(GREEN_PIN, HIGH);
+digitalWrite(BLUE_PIN, LOW);
+//por un segundo
+delay(1000);
+// Azul (enciende solo el LED azul):
+digitalWrite(RED_PIN, LOW);
+digitalWrite(GREEN_PIN, LOW);
+digitalWrite(BLUE_PIN, HIGH);
+//por un segundo
+delay(1000);
+// Amarillo (activar rojo y verde):
+digitalWrite(RED_PIN, HIGH);
+digitalWrite(GREEN_PIN, HIGH);
+digitalWrite(BLUE_PIN, LOW);
+//por un segundo
+delay(1000);
+// Cian (activar verde y azul):
+digitalWrite(RED_PIN, LOW);
+digitalWrite(GREEN_PIN, HIGH);
+digitalWrite(BLUE_PIN, HIGH);
+//por un segundo
+delay(1000);
+// Púrpura (enciende rojo y azul):
+digitalWrite(RED_PIN, HIGH);
+digitalWrite(GREEN_PIN, LOW);
+digitalWrite(BLUE_PIN, HIGH);
+//por un segundo
+delay(1000);
+// Blanco (enciende todos los LED):
+digitalWrite(RED_PIN, HIGH);
+digitalWrite(GREEN_PIN, HIGH);
+digitalWrite(BLUE_PIN, HIGH);
+//por un segundo
+delay(1000);
