@@ -1,0 +1,49 @@
+// constante de pin de entrada analógica
+const int tempPin = 0;
+// variable de lectura
+int tempVal;
+// voltaje variable
+float volts;
+// variables de temperatura final
+float tempC;
+float tempF;
+void setup()
+{
+// inicia el puerto serie a 9600 baudios
+Serial.begin(9600);
+}
+
+void loop()
+{
+// lee el sensor de temperatura y guárdalo en tempVal
+tempVal = analogRead(tempPin);
+// imprime el valor 10 de analogRead
+Serial.print(&quot;TempVal = &quot;);
+Serial.print(tempVal);
+// imprime un espaciador
+Serial.print(&quot; **** &quot;);
+// convertir esa lectura a voltaje multiplicando la lectura por 5v
+volts = tempVal * 5;
+volts /= 1023.0;
+// imprime el voltaje bruto sobre el puerto serie
+Serial.print(&quot;volts: &quot;);
+Serial.print(volts, 5);
+// imprime un espaciador
+Serial.print(&quot; **** &quot;);
+
+// calcular la temperatura en grados centígrados a partir del voltaje
+// la ecuación se encontro en las especificaciones del sensor
+tempC = (volts - 0.5) * 100 ;
+// imprime la temperatura celcius sobre el puerto serie
+Serial.print(&quot; grados C: &quot;);
+Serial.print(tempC);
+// imprime un espaciador
+Serial.print(&quot; **** &quot;);
+// Convertir de celcius a fahrenheit
+tempF = (tempC * 9.0 / 5.0) + 32.0;
+// imprime la temperatura Fahrenheit sobre el puerto serie
+Serial.print(&quot; grados F: &quot;);
+Serial.println(tempF);
+// espera un poco antes de tomar otra lectura
+delay(1000);
+}
