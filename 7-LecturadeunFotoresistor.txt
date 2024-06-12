@@ -1,0 +1,17 @@
+int sensorValue = 0;
+void setup()
+{
+pinMode(A0, INPUT);
+Serial.begin(9600);
+pinMode(9, OUTPUT);
+}
+void loop()
+{
+// leer el valor del sensor
+sensorValue = analogRead(A0);
+// imprime la lectura del sensor para que sepas su rango
+Serial.println(sensorValue);
+// mapear la lectura del sensor a un rango
+analogWrite(9, map(sensorValue, 0, 1023, 0, 255));
+delay(100); // esperar 100 mili segundos
+}
