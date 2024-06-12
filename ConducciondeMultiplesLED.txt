@@ -1,0 +1,202 @@
+// Para realizar un seguimiento de todos los pines LED, usaremos una &quot;matriz&quot;.
+// Una matriz le permite almacenar un grupo de variables y referirse a ellas
+// por su posición o &quot;índice&quot;. Aquí estamos creando una serie de
+// seis varibles enteras:
+int ledPins[] = {4,5,6,7,8,9};
+
+void setup()
+{
+// crea una variable local para almacenar el índice de qué pin queremos controlar
+int index;
+
+// Para el ciclo for () a continuación, estas son las tres declaraciones:
+// 1. index = 0; Antes de comenzar, haga index = 0.
+// 2. índice &lt;= 5; Si el índice es menor o igual a 5, ejecute el siguiente código
+// 3. index ++ Poner &quot;++&quot; después de una variable significa &quot;agregarle una&quot;.
+// Cuando la prueba en la declaración 2 es finalmente falsa, el código
+// continuará.
+// Este ciclo for () hará que index = 0, luego ejecute pinMode ()
+// más la declaración entre paréntesis. Entonces hará lo mismo
+// para index = 2, index = 3, etc. hasta index = 5.
+for(index = 0; index &lt;= 5; index++)
+{
+pinMode(ledPins[index],OUTPUT);
+}
+}
+
+void loop()
+{
+// Este loop () llama funciones que hemos escrito más abajo.
+// Hemos desactivado algunos de estos al comentarlos (poniendo &quot;//&quot; en frente de ellos).
+// Para probar diferentes pantallas LED, elimine el &quot;//&quot;
+// delante de los que te gustaría ejecutar, y agrega &quot;//&quot;
+// delante de los que no comentar (y deshabilitar) aquellos líneas.
+
+// Ilumina todos los LED a su vez
+oneAfterAnotherNoLoop();
+// Igual que oneAfterAnotherNoLoop
+//oneAfterAnotherLoop();
+// Enciende un LED a la vez, desplazándote por la línea
+//oneOnAtATime();
+// Enciende los LED en el medio de los bordes
+//pingPong();
+//marquee();
+// Parpadea los LED al azar
+//randomLED();
+}
+
+/*
+oneAfterAnotherNoLoop()
+Esta función encenderá un LED, uno a uno, luego se enciende
+el siguiente LED y repite hasta que todos los LED estén encendidos.
+Y los apagará en el orden inverso.
+*/
+void oneAfterAnotherNoLoop()
+{
+// tiempo (milisegundos) para pausar entre cada LED
+int delayTime = 100;
+
+// enciende todos los LED:
+digitalWrite(ledPins[0], HIGH); // Enciende el LED # 0 (pin 4)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[1], HIGH); // Enciende el LED # 1 (pin 5)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[2], HIGH); // Enciende el LED # 2 (pin 6)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[3], HIGH); // Enciende el LED # 3 (pin 7)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[4], HIGH); // Enciende el LED # 4 (pin 8)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[5], HIGH); // Enciende el LED # 5 (pin 9)
+delay(delayTime); // espera delayTime milisegundos
+// apaga todos los LED:
+digitalWrite(ledPins[5], LOW); // Apaga el LED # 5 (pin 9)
+
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[4], LOW); // Apaga el LED # 4 (pin 8)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[3], LOW); // Apaga el LED # 3 (pin 7)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[2], LOW); // Apaga el LED # 2 (pin 6)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[1], LOW); // Apaga el LED # 1 (pin 5)
+delay(delayTime); // espera delayTime milisegundos
+digitalWrite(ledPins[0], LOW); // Apaga el LED # 0 (pin 4)
+delay(delayTime); // espera delayTime milisegundos
+}
+
+/*
+oneAfterAnotherLoop()
+Esta función hace exactamente lo mismo que oneAfterAnotherNoLoop (),
+pero aprovecha los ciclos for () y la matriz para hacerlo con menor
+líneas de código
+*/
+void oneAfterAnotherLoop()
+{
+int index;
+int delayTime = 100; // milisegundos para pausar entre cada LED
+//haga esto más pequeño para un cambio más rápido
+// Encienda todos los LED:
+// Este ciclo for () aumentará el índice de 0 a 5
+// (poner &quot;++&quot; después de una variable significa agregarle una)
+// y luego usará digitalWrite () para encender ese LED.
+for(index = 0; index &lt;= 5; index++)
+{
+digitalWrite(ledPins[index], HIGH);
+delay(delayTime);
+}
+// Apague todos los LED:
+// Este ciclo for () aumentará el índice de 5 a 0
+// (poner &quot;-&quot; después de una variable significa restarle una)
+// y luego usará digitalWrite () para apagar ese LED.
+for(index = 5; index &gt;= 0; index--)
+{
+digitalWrite(ledPins[index], LOW);
+delay(delayTime);
+}
+}
+
+/*
+oneOnAtATime()
+Esta función pasará por los LED,
+iluminando solo uno a la vez.
+*/
+void oneOnAtATime()
+{
+int index;
+int delayTime = 100; // milisegundos para pausar entre LED
+// haga esto más pequeño para un cambio más rápido
+// paso a través de los LED, de 0 a 5
+for(index = 0; index &lt;= 5; index++)
+{
+digitalWrite(ledPins[index], HIGH); // encienda el LED
+delay(delayTime); // pausa para frenar
+digitalWrite(ledPins[index], LOW); // apaga el LED
+}
+}
+
+/*
+pingPong()
+Esta función pasará por los LED,
+iluminando uno a la vez en ambas direcciones.
+*/
+void pingPong()
+{
+int index;
+int delayTime = 100; // milisegundos para pausar entre LED
+// haga esto más pequeño para un cambio más rápido
+// paso a través de los LED, de 0 a 5
+for(index = 0; index &lt;= 5; index++)
+{
+digitalWrite(ledPins[index], HIGH); // encienda el LED
+delay(delayTime); // pausa para frenar
+digitalWrite(ledPins[index], LOW); // apaga el LED
+}
+
+// paso a través de los LED, de 5 a 0
+for(index = 5; index &gt;= 0; index--)
+{
+digitalWrite(ledPins[index], HIGH); // encienda el LED
+delay(delayTime); // pausa para frenar
+digitalWrite(ledPins[index], LOW); // apaga el LED
+}
+}
+
+/*
+marquee()
+Esta función imitará &quot;luces de persecución&quot; como las de los letreros.
+*/
+void marquee()
+{
+int index;
+int delayTime = 200; // milisegundos para pausar entre LED
+// Hazlo más pequeño para un cambio más rápido
+// Recorre los primeros cuatro LED
+// (Iluminaremos uno en los 3 inferiores y uno en los 3 superiores)
+for(index = 0; index &lt;= 2; index++) // Paso de 0 a 3
+{
+digitalWrite(ledPins[index], HIGH); //Enciende un LED
+digitalWrite(ledPins[index+3], HIGH); // Omita cuatro y encienda ese LED
+delay(delayTime); // Pausa para ralentizar la secuencia.
+digitalWrite(ledPins[index], LOW); // Apaga el LED
+digitalWrite(ledPins[index+3], LOW); // Salta cuatro y apaga ese LED
+}
+}
+
+/*
+randomLED()
+Esta función encenderá LED aleatorios. ¿Puedes modificarlo para que
+también los enciende por momentos aleatorios?
+*/
+void randomLED()
+{
+int index;
+int delayTime;
+//La función random () devolverá un número semialeatorio cada
+
+index = random(5); // elige un número aleatorio entre 0 y 5
+delayTime = 100;
+digitalWrite(ledPins[index], HIGH); // enciende el LED
+delay(delayTime); // pausa para frenar
+digitalWrite(ledPins[index], LOW); // Apaga el LED
+}
